@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 
 process.stdin.resume();
@@ -12,7 +11,9 @@ process.stdin.on('data', inputStdin => {
 });
 
 process.stdin.on('end', _ => {
-    inputString = inputString.trim().split('\n').map(str => str.trim());
+    inputString = inputString.replace(/\s*$/, '')
+        .split('\n')
+        .map(str => str.replace(/\s*$/, ''));
 
     main();
 });
@@ -21,13 +22,11 @@ function readLine() {
     return inputString[currentLine++];
 }
 
-/*
- * Complete the simpleArraySum function below.
- */
-
-function simpleArraySum(ar) {
-
-  return ar.reduce((acc, current)=> acc += current,0)
+// Complete the aVeryBigSum function below.
+//We can actually use the exact same function as a simple Array Sum.
+function aVeryBigSum(ar) {
+    
+    return ar.reduce((acc, current)=> acc += current,0)
 
 }
 
@@ -38,7 +37,7 @@ function main() {
 
     const ar = readLine().split(' ').map(arTemp => parseInt(arTemp, 10));
 
-    let result = simpleArraySum(ar);
+    let result = aVeryBigSum(ar);
 
     ws.write(result + "\n");
 
